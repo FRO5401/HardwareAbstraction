@@ -4,14 +4,37 @@
 
 package frc.robot.Subsystems.Drivetrain;
 
-import edu.wpi.first.wpilibj2.command.SubsystemBase;
+/*  Imports */
+import org.littletonrobotics.junction.AutoLog;
 
-public class DrivetrainIO extends SubsystemBase {
-  /** Creates a new DrivetrainIO. */
-  public DrivetrainIO() {}
+public interface DrivetrainIO {
 
-  @Override
-  public void periodic() {
-    // This method will be called once per scheduler run
+  @AutoLog
+  public static class DrivetrainIOInputs {
+    //  Voltage to Motors
+    public double leftAppliedVolts = 0.0;
+    public double rightAppliedVolts = 0.0;
+
+    //  Amperage of Motors
+    public double[] leftCurrentAmps = new double[] {};
+    public double[] rightCurrentAmps = new double[] {};
+
+    //  Position in Radians
+    public double leftPositionRad = 0.0;
+    public double rightPositionRad = 0.0;
+
+    //  Speed/Velocity in Radians Per Second
+    public double leftVelocityRadPerSec = 0.0;
+    public double rightVelocityRadPerSec = 0.0;
+
   }
+  /* */
+  public default void updateInputs(DrivetrainIOInputs inputs){};
+
+  /* */
+  public default void setVoltage(double left, double right){};
+
+  /* */
+  public default void setVelocity(double left, double right){};
+  
 }

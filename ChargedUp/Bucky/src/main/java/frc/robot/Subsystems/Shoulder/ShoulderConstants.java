@@ -1,7 +1,10 @@
 package frc.robot.Subsystems.Shoulder;
 
+import com.revrobotics.spark.config.SparkMaxConfig;
+import com.revrobotics.spark.config.SparkBaseConfig.IdleMode;
+
 public final class ShoulderConstants {
-    
+
     public static final int MASTER_ID = 8;
     public static final int FOLLOWER_ID = 9;
     public static final double MAX_ROTATION = 60;
@@ -12,4 +15,13 @@ public final class ShoulderConstants {
     public static final double kD = 0.0000086;
     public static final double kF = 0.001; 
 
+    public static final SparkMaxConfig masterConfig = new SparkMaxConfig();
+    public static final SparkMaxConfig followerConfig = new SparkMaxConfig();
+
+    public ShoulderConstants(){
+        masterConfig
+            .idleMode(IdleMode.kBrake)
+            .smartCurrentLimit(40)
+            .
+    }
 }

@@ -61,7 +61,7 @@ public class ElevatorConstants {
     public static final FeedbackConfigs FEEDBACK_CONFIG = new FeedbackConfigs()
       .withSensorToMechanismRatio(GEAR_RATIO);
 
-    public static TalonFXConfiguration ELEVATOR_CONFIG = new TalonFXConfiguration()
+    public static final TalonFXConfiguration ELEVATOR_CONFIG = new TalonFXConfiguration()
       .withSlot0(CLOSED_LOOP_CONFIG)
       .withCurrentLimits(CURRENT_LIMITS_CONFIG)
       .withSoftwareLimitSwitch(SOFT_LIMIT_CONFIG)

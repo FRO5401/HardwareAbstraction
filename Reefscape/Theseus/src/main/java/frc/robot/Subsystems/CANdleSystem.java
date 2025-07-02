@@ -47,7 +47,7 @@
  * 	- CANdle: 22.1.1.0
  */
 
-package frc.robot.subsystems;
+package frc.robot.Subsystems;
 
 import com.ctre.phoenix.led.Animation;
 import com.ctre.phoenix.led.CANdle;

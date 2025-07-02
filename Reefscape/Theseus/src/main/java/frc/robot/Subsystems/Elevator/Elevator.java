@@ -23,7 +23,7 @@ public class Elevator extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
     elevatorIO.updateInputs(inputs);
-    Logger.processInputs("/Elevator", inputs);
+    Logger.processInputs("/Elevator/", inputs);
   }
 
   public Command stopElevator(){

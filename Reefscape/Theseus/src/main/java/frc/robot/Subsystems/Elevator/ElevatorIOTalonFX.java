@@ -16,6 +16,7 @@ public class ElevatorIOTalonFX implements ElevatorIO{
     elevatorMotor.getConfigurator().apply(config);
   }
 
+  @Override
   public void updateInputs(ElevatorIOInputs inputs){
     inputs.position = elevatorMotor.getPosition().refresh().getValueAsDouble();
     inputs.voltage = elevatorMotor.getMotorVoltage().refresh().getValueAsDouble();
@@ -24,10 +25,12 @@ public class ElevatorIOTalonFX implements ElevatorIO{
     inputs.temperature = elevatorMotor.getDeviceTemp().refresh().getValueAsDouble();
   }
 
+  @Override
   public void setVoltage(double voltage){
     elevatorMotor.setVoltage(voltage);
   }
 
+  @Override
   public void setPosition(double position){
     if(position > ElevatorConstants.MAX_EXTENSION){
       position = ElevatorConstants.MAX_EXTENSION;
@@ -37,7 +40,8 @@ public class ElevatorIOTalonFX implements ElevatorIO{
     elevatorMotor.setControl(positionPID.withPosition(position));
   }
 
+  @Override
   public void stop(){
-    elevatorMotor.set(0);
+    elevatorMotor.stopMotor();
   }
 }

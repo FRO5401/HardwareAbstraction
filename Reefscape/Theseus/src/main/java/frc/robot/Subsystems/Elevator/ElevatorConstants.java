@@ -16,7 +16,7 @@ import edu.wpi.first.units.measure.Current;
 
 public class ElevatorConstants {
 
-  public static final int elevatorID = 13;
+  public static final int ELEVATOR_ID = 13;
 
   public static final double SPEED_MODIFIER = 166;
   public static final double BARGE = 145;

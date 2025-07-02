@@ -7,7 +7,7 @@ import com.ctre.phoenix6.hardware.TalonFX;
 import frc.robot.Subsystems.Elevator.ElevatorConstants.Config;
 
 public class ElevatorIOTalonFX implements ElevatorIO{
-  private final TalonFX elevatorMotor = new TalonFX(ElevatorConstants.elevatorID);
+  private final TalonFX elevatorMotor = new TalonFX(ElevatorConstants.ELEVATOR_ID);
   private final TalonFXConfiguration config = Config.ELEVATOR_CONFIG;
   private final PositionVoltage positionPID = new PositionVoltage(0).withSlot(0);
 

@@ -18,15 +18,6 @@ public class ElevatorConstants {
 
   public static final int ELEVATOR_ID = 13;
 
-  public static final double SPEED_MODIFIER = 166;
-  public static final double BARGE = 145;
-  public static final double L4 = 133;
-  public static final double L3 = 77;    
-  public static final double L2 = 48;
-  public static final double STATION = 45;
-  public static final double PROCESSOR = 5;
-  public static final double FLOOR = 1;
-
   public static final double KP = 4; // An error of 1 rotation results in 2.4 V output
   public static final double KI = 3; // no output for integrated error
   public static final double KD = .4; // A velocity of 1 rps results in 0.1 V output
@@ -34,6 +25,7 @@ public class ElevatorConstants {
   public static final double KV= .1;
   public static final double KG= 2.4;
 
+  public static final double SPEED_MODIFIER = 166;
   public static final double MAX_EXTENSION = 160;
   public static final double MIN_EXTENSION = -1;
   public static final double GEAR_RATIO = 25; 

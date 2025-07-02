@@ -15,16 +15,6 @@ public class PivotConstants {
   public static final double KI=0;
   public static final double KD=0;
 
-  public static final double STRAIGHTOUT = -31*2;
-  public static final double PROCESSOR = 53; //Will replace straight out most likely
-  public static final double BARGE = -16;//-13*2
-  public static final double L4 = -82*2;
-  public static final double PLACE_CORAL = -62.49993896484375*2;
-  public static final double CLEAR_ALGEA =-40.49993896484375*2;
-  public static final double FLOOR_PICKUP =-50*2;
-
-  public static final double STATION = -25*2;
-
   public class Config{
     public static final ClosedLoopConfig CLOSED_LOOP_CONFIG = new ClosedLoopConfig()
       .feedbackSensor(FeedbackSensor.kPrimaryEncoder)

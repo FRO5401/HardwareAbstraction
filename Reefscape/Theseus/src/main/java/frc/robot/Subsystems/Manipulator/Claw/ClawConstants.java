@@ -20,13 +20,6 @@ public class ClawConstants {
   public static final double PINCH_kD = 0;
   public static final double PINCH_KF = 10;
 
-  public static final double HOLD_CORAL = 32;
-  public static final double HOLD_ALGEA = 6;
-  public static final double TELEOP_REPEL_ALGEA = -0.58; //-0.7
-  public static final double TELEOP_REPEL_CORAL = -.9; //-0.7
-  public static final double AUTO_REPEL_ALGEA = -.84;
-  public static final double INTAKE_SPEED = 1;
-
   public static final double PINCH_GEAR_RATIO = 16;
   public static final double INTAKE_GEAR_RATIO = 1;
   public static final int PINCH_STALL_LIMIT = 25;

@@ -18,8 +18,10 @@ import frc.robot.Subsystems.CANdleSystem.AnimationTypes;
 import frc.robot.Subsystems.Elevator.Elevator;
 import frc.robot.Subsystems.Manipulator.Claw.Claw;
 import frc.robot.Subsystems.Manipulator.Pivot.Pivot;
+import frc.robot.Subsystems.SuperStructure.ScoringConstants.ClawPosition;
 import frc.robot.Subsystems.SuperStructure.ScoringConstants.ClawVelocity;
 import frc.robot.Subsystems.SuperStructure.ScoringConstants.ElevatorPosition;
+import frc.robot.Subsystems.SuperStructure.ScoringConstants.PivotPosition;
 import frc.robot.Subsystems.SuperStructure.ScoringConstants.ScoringPositions;
 
 public class SuperStructure extends SubsystemBase {
@@ -30,11 +32,10 @@ public class SuperStructure extends SubsystemBase {
   private final CANdleSystem candle;
   private final String outputKey = "SuperStructure/";
 
-  private Trigger hasAlgea;
-  private Trigger hasCoral;
-
   private double elevatorTarget;
   private double pivotTarget;
+  private final double debounceAlgeaTime = 0.1;
+  private final double debounceCoralTime = 0.2;
 
   /** Creates a new SuperStructure. */
   public SuperStructure(Elevator elevator, Pivot pivot, Claw claw, CANdleSystem candle) {
@@ -42,19 +43,38 @@ public class SuperStructure extends SubsystemBase {
     this.pivot = pivot;
     this.claw = claw;
     this.candle = candle;
-
-    hasAlgea = claw.hasAlgea();
-    hasCoral = claw.hasCoral();
-
   }
 
   @Override
   public void periodic() {
     Logger.recordOutput(outputKey+"Elevator Position", elevator.getPosition());
     Logger.recordOutput(outputKey+"Pivot Rotation", pivot.getPosition());
-    Logger.recordOutput(outputKey+"Has Algea", hasAlgea);
-    Logger.recordOutput(outputKey+"Has Coral", hasCoral);
+    Logger.recordOutput(outputKey+"Has Algea", hasAlgea());
+    Logger.recordOutput(outputKey+"Has Coral", hasCoral());
     // This method will be called once per scheduler run
+  }
+
+  public Trigger hasAlgea(){
+    return claw.hasAlgea().debounce(debounceAlgeaTime);
+  }
+
+  public Trigger hasCoral(){
+    return claw.hasCoral().debounce(debounceCoralTime);
+  }
+
+  public Command stowAlgea(){
+    return Commands.parallel(
+      pivot.setPosition(PivotPosition.STRAIGHT_OUT.getPivotRotation()),
+      claw.setPinchPosition(ClawPosition.CORAL_INTAKE.getPinchRotation()),
+      candle.setLights(AnimationTypes.HasAlgea)
+    );
+  }
+
+  public Command stowCoral(){
+    return Commands.parallel(
+      claw.stopIntake(),
+      candle.setLights(AnimationTypes.HasCoral)
+    );
   }
 
   public Command setPoint(ScoringPositions pose){
@@ -162,4 +182,3 @@ public class SuperStructure extends SubsystemBase {
   }
 
 }
-

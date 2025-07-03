@@ -2,7 +2,7 @@ package frc.robot.Subsystems.SuperStructure;
 
 import java.util.OptionalDouble;
 
-public class ScoringPositions {
+public class ScoringConstants {
   //TODO Update all values for elevator
   public static enum ElevatorPosition{
     FLOOR_ALGEA(1),
@@ -65,7 +65,7 @@ public class ScoringPositions {
     }
   }
 
-  public static enum ClawSpeeds{
+  public static enum ClawVelocity{
     INTAKE(1),
     L1(0),//TODO Find this value
     CORAL(-0.9),
@@ -77,11 +77,11 @@ public class ScoringPositions {
     private double intakeVelocity;
     private OptionalDouble rightVelocity;
 
-    private ClawSpeeds(double intakeVelocity, OptionalDouble rightVelocity){
+    private ClawVelocity(double intakeVelocity, OptionalDouble rightVelocity){
       this.intakeVelocity = intakeVelocity;
       this.rightVelocity = rightVelocity;
     }
-    private ClawSpeeds(double intakeVelocity){
+    private ClawVelocity(double intakeVelocity){
       this.intakeVelocity = intakeVelocity;
     }
 
@@ -94,39 +94,40 @@ public class ScoringPositions {
     }
   }
    /**
-    * @param Elevator_Position
-    * @param Pivot_Position
-    * @param Claw_Position
-    * @param Dispense_Speed
+    * @param Elevator_Position The Elevator height
+    * @param Pivot_Position The Pivot rotation
+    * @param Claw_Position The Pinch rotation
+    * @param Dispense_Speed The Claw dispense speed
     */
   
-  public static enum CombinedPositions{
-    FLOOR_ALGEA(ElevatorPosition.FLOOR_ALGEA, PivotPosition.FLOOR, ClawPosition.ALGEA, ClawSpeeds.DISPENSE),
-    PROCESSOR(ElevatorPosition.PROCESSOR, PivotPosition.PROCESSOR, ClawPosition.ALGEA, ClawSpeeds.ALGEA_PROCESSOR),
-    L1(ElevatorPosition.L1, PivotPosition.L1, ClawPosition.CORAL_EXPEL, ClawSpeeds.L1),
-    L2(ElevatorPosition.L2, PivotPosition.PLACE_CORAL, ClawPosition.CORAL_EXPEL, ClawSpeeds.CORAL),
-    L3(ElevatorPosition.L3, PivotPosition.PLACE_CORAL, ClawPosition.CORAL_EXPEL, ClawSpeeds.CORAL),
-    L4(ElevatorPosition.L4, PivotPosition.PLACE_CORAL, ClawPosition.CORAL_EXPEL, ClawSpeeds.CORAL),
-    L2_ALGEA(ElevatorPosition.ALGEA_L2, PivotPosition.REEF_ALGEA, ClawPosition.ALGEA, ClawSpeeds.DISPENSE),
-    L3_ALGEA(ElevatorPosition.ALGEA_L3, PivotPosition.REEF_ALGEA, ClawPosition.ALGEA, ClawSpeeds.DISPENSE),
-    STATION(ElevatorPosition.STATION, PivotPosition.STATION, ClawPosition.CORAL_INTAKE, ClawSpeeds.DISPENSE),
-    BARGE(ElevatorPosition.BARGE, PivotPosition.BARGE, ClawPosition.ALGEA, ClawSpeeds.ALGEA_BARGE),
-    AUTO_ALGEA(ElevatorPosition.BARGE, PivotPosition.BARGE, ClawPosition.ALGEA, ClawSpeeds.ALGEA_AUTO);
+  public static enum ScoringPositions{
+    FLOOR_ALGEA(ElevatorPosition.FLOOR_ALGEA, PivotPosition.FLOOR, ClawPosition.ALGEA),
+    PROCESSOR(ElevatorPosition.PROCESSOR, PivotPosition.PROCESSOR, ClawPosition.ALGEA),
+    L1(ElevatorPosition.L1, PivotPosition.L1, ClawPosition.CORAL_EXPEL),
+    L2(ElevatorPosition.L2, PivotPosition.PLACE_CORAL, ClawPosition.CORAL_EXPEL),
+    L3(ElevatorPosition.L3, PivotPosition.PLACE_CORAL, ClawPosition.CORAL_EXPEL),
+    L4(ElevatorPosition.L4, PivotPosition.PLACE_CORAL, ClawPosition.CORAL_EXPEL),
+    L2_ALGEA(ElevatorPosition.ALGEA_L2, PivotPosition.REEF_ALGEA, ClawPosition.ALGEA),
+    L3_ALGEA(ElevatorPosition.ALGEA_L3, PivotPosition.REEF_ALGEA, ClawPosition.ALGEA),
+    STATION(ElevatorPosition.STATION, PivotPosition.STATION, ClawPosition.CORAL_INTAKE),
+    BARGE(ElevatorPosition.BARGE, PivotPosition.BARGE, ClawPosition.ALGEA),
+    AUTO_ALGEA(ElevatorPosition.BARGE, PivotPosition.BARGE, ClawPosition.ALGEA);
 
     private ElevatorPosition elevator;
     private PivotPosition pivot;
     private ClawPosition claw;
-    private ClawSpeeds clawVelocity;
 
-    private CombinedPositions(ElevatorPosition elevator, PivotPosition pivot, ClawPosition claw, ClawSpeeds clawVelocity){
+    private ScoringPositions(ElevatorPosition elevator, PivotPosition pivot, ClawPosition claw){
       this.elevator = elevator;
       this.pivot = pivot;
       this.claw = claw;
-      this.clawVelocity = clawVelocity;
     }
 
     public double getElevatorPosition(){
       return elevator.getElevatorHeight();
+    }
+    public ElevatorPosition getElevatorEnum(){
+      return elevator;
     }
 
     public double getPivotPosition(){
@@ -137,13 +138,6 @@ public class ScoringPositions {
       return claw.getPinchRotation();
     }
 
-    public double getDispenseVelocity(){
-      return clawVelocity.getIntakeVelocity();
-    }
-
-    public double getRightDispenseVelocity(){
-      return clawVelocity.getRightVelocity();
-    }
   }
   
 }

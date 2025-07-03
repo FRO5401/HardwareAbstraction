@@ -4,10 +4,13 @@
 
 package frc.robot.Subsystems.Elevator;
 
+import java.util.function.BooleanSupplier;
+
 import org.littletonrobotics.junction.Logger;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+import frc.robot.Util.EqualUtil;
 
 public class Elevator extends SubsystemBase {
 
@@ -40,5 +43,9 @@ public class Elevator extends SubsystemBase {
 
   public double getPosition(){
     return inputs.position;
+  }
+
+  public BooleanSupplier atSetpoint(double target){
+    return ()->EqualUtil.epsilonEquals(target, getPosition());
   }
 }

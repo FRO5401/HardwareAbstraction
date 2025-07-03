@@ -35,4 +35,6 @@ public interface ClawIO {
 
   public default void stopClaw(){}
 
+  public default void stopIntake(){}
+
 }

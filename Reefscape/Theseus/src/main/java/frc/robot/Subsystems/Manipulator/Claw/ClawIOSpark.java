@@ -94,6 +94,12 @@ public class ClawIOSpark implements ClawIO {
     intakeRight.stopMotor();
   }
 
+  @Override
+  public void stopIntake(){
+    intakeLeft.stopMotor();
+    intakeRight.stopMotor();
+  }
+
   // finds average of both intake motors
   public double intakeCurrent(){
     return 

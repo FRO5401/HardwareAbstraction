@@ -51,6 +51,11 @@ public class Claw extends SubsystemBase {
     });
   }
 
+  public Command stopIntake(){
+    return runOnce(()->{
+      clawIO.stopIntake();
+    });
+  }
   public Trigger hasAlgea(){
     return new Trigger(()->inputs.algeaCurrentSpike);
   }

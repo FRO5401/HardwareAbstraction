@@ -91,4 +91,27 @@ public class ScoringPositions {
       return rightVelocity.isPresent() ? rightVelocity.getAsDouble() : intakeVelocity; 
     }
   }
+  /* 
+  public static enum CombinedPositions{
+    FLOOR_ALGEA(ElevatorPosition.FLOOR_ALGEA, PivotPosition.FLOOR, ClawPosition.ALGEA, ClawSpeeds.INTAKE),
+    PROCESSOR(),
+    L1(),
+    L2(),
+    L3(),
+    L4(),
+    L2_ALGEA(),
+    L3_ALGEA(),
+    STATION(),
+    BARGE();
+
+    private ElevatorPosition elevator;
+    private PivotPosition pivot;
+    private ClawPosition claw;
+    private ClawSpeeds clawVelocity;
+
+    private CombinedPositions(ElevatorPosition elevator, PivotPosition pivot, ClawPosition claw, ClawSpeeds clawVelocity){
+
+    }
+  }
+  */
 }

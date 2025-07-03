@@ -4,8 +4,6 @@
 
 package frc.robot.Subsystems.Manipulator.Claw;
 
-import java.util.function.BooleanSupplier;
-
 import org.littletonrobotics.junction.Logger;
 
 import edu.wpi.first.wpilibj2.command.Command;

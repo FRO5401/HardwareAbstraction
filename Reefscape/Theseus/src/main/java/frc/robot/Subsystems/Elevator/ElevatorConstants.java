@@ -13,17 +13,37 @@ import com.ctre.phoenix6.signals.InvertedValue;
 import com.ctre.phoenix6.signals.NeutralModeValue;
 
 import edu.wpi.first.units.measure.Current;
+import frc.robot.Constants.PIDformat;
+import frc.robot.Util.RobotMode;
 
 public class ElevatorConstants {
 
   public static final int ELEVATOR_ID = 13;
 
-  public static final double KP = 4; // An error of 1 rotation results in 2.4 V output
-  public static final double KI = 3; // no output for integrated error
-  public static final double KD = .4; // A velocity of 1 rps results in 0.1 V output
-  public static final double KA= .1;
-  public static final double KV= .1;
-  public static final double KG= 2.4;
+  public static final PIDformat PID_VALUES = 
+
+    switch(RobotMode.currentMode){
+      case SIM -> new PIDformat(
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      );
+      default -> new PIDformat(
+        4, // An error of 1 rotation results in 2.4 V output
+        3, // no output for integrated error
+        0.4, // A velocity of 1 rps results in 0.1 V output
+        0, 
+        0.1, 
+        0.1, 
+        2.4, 
+        0
+      );
+    };
 
   public static final double SPEED_MODIFIER = 166;
   public static final double MAX_EXTENSION = 160;
@@ -34,13 +54,12 @@ public class ElevatorConstants {
 
   public class Config{
     public static final Slot0Configs CLOSED_LOOP_CONFIG = new Slot0Configs()
-      .withKP(KP)
-      .withKI(KI)
-      .withKD(KD)
-      .withKA(KA)
-      .withKP(KP)
-      .withKV(KV)
-      .withKG(KG)
+      .withKP(PID_VALUES.kP())
+      .withKI(PID_VALUES.kI())
+      .withKD(PID_VALUES.kD())
+      .withKA(PID_VALUES.kA())
+      .withKV(PID_VALUES.kV())
+      .withKG(PID_VALUES.kG())
       .withGravityType(GravityTypeValue.Elevator_Static);
 
     public static final CurrentLimitsConfigs CURRENT_LIMITS_CONFIG = new CurrentLimitsConfigs()

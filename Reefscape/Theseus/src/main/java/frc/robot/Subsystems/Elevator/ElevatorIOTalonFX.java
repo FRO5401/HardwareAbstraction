@@ -32,11 +32,6 @@ public class ElevatorIOTalonFX implements ElevatorIO{
 
   @Override
   public void setPosition(double position){
-    if(position > ElevatorConstants.MAX_EXTENSION){
-      position = ElevatorConstants.MAX_EXTENSION;
-    } else if(position>ElevatorConstants.MIN_EXTENSION){
-      position = ElevatorConstants.MIN_EXTENSION;
-    }
     elevatorMotor.setControl(positionPID.withPosition(position));
   }
 

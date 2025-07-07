@@ -37,6 +37,13 @@ public class Elevator extends SubsystemBase {
 
   public Command setPosition(double position){
     return runOnce(()->{
+  
+      if(position > ElevatorConstants.MAX_EXTENSION){
+        elevatorIO.setPosition(ElevatorConstants.MAX_EXTENSION);
+      } else if(position>ElevatorConstants.MIN_EXTENSION){
+        elevatorIO.setPosition(ElevatorConstants.MIN_EXTENSION);
+      }
+
       elevatorIO.setPosition(position);
     });
   }

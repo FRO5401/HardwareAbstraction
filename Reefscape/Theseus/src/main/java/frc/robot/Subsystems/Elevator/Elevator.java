@@ -13,7 +13,6 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Util.EqualUtil;
 
 public class Elevator extends SubsystemBase {
-
   private ElevatorIO elevatorIO;
   private ElevatorIOInputsAutoLogged inputs = new ElevatorIOInputsAutoLogged();
 

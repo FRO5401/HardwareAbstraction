@@ -12,6 +12,7 @@ import com.ctre.phoenix6.signals.GravityTypeValue;
 import com.ctre.phoenix6.signals.InvertedValue;
 import com.ctre.phoenix6.signals.NeutralModeValue;
 
+import edu.wpi.first.math.util.Units;
 import edu.wpi.first.units.measure.Current;
 import frc.robot.Constants.PIDformat;
 import frc.robot.Util.RobotMode;
@@ -49,6 +50,12 @@ public class ElevatorConstants {
   public static final double MAX_EXTENSION = 160;
   public static final double MIN_EXTENSION = -1;
   public static final double GEAR_RATIO = 25; 
+
+  public static final double CHAIN_LENGTH_DRIVE_METERS = Units.inchesToMeters(0.35);
+  public static final double CHAIN_LENGTH_SUPPORT = Units.inchesToMeters(0.25);
+  public static final double CHAIN_SPROCKET_DRIVE = 12;
+  public static final double CHAIN_SPROCKET_SUPPORT = 22;
+
   public static final Current STATOR_LIMIT = Amps.of(120);
   public static final Current SUPPLY_LIMIT = Amps.of(80);
 

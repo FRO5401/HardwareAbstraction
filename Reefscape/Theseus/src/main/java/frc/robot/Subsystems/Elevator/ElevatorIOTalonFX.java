@@ -1,0 +1,42 @@
+package frc.robot.Subsystems.Elevator;
+
+import com.ctre.phoenix6.configs.TalonFXConfiguration;
+import com.ctre.phoenix6.controls.PositionVoltage;
+import com.ctre.phoenix6.hardware.TalonFX;
+
+import frc.robot.Subsystems.Elevator.ElevatorConstants.Config;
+
+public class ElevatorIOTalonFX implements ElevatorIO{
+  private final TalonFX elevatorMotor = new TalonFX(ElevatorConstants.ELEVATOR_ID);
+  private final TalonFXConfiguration config = Config.ELEVATOR_CONFIG;
+  private final PositionVoltage positionPID = new PositionVoltage(0).withSlot(0);
+
+  public ElevatorIOTalonFX(){
+    elevatorMotor.setPosition(0);
+    elevatorMotor.getConfigurator().apply(config);
+  }
+
+  @Override
+  public void updateInputs(ElevatorIOInputs inputs){
+    inputs.position = elevatorMotor.getPosition().refresh().getValueAsDouble();
+    inputs.voltage = elevatorMotor.getMotorVoltage().refresh().getValueAsDouble();
+    inputs.velocity = elevatorMotor.getVelocity().refresh().getValueAsDouble();
+    inputs.current = elevatorMotor.getStatorCurrent().refresh().getValueAsDouble();
+    inputs.temperature = elevatorMotor.getDeviceTemp().refresh().getValueAsDouble();
+  }
+
+  @Override
+  public void setVoltage(double voltage){
+    elevatorMotor.setVoltage(voltage);
+  }
+
+  @Override
+  public void setPosition(double position){
+    elevatorMotor.setControl(positionPID.withPosition(position));
+  }
+
+  @Override
+  public void stop(){
+    elevatorMotor.stopMotor();
+  }
+}
